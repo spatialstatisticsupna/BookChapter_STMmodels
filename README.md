@@ -1,7 +1,9 @@
 # Multivariate models to uncover hidden relationships between different cancer sites
 This repository contains the R code to fit with INLA the M-models for multivariate spatio-temporal areal data described in the book chapter entitled _"Multivariate disease mapping models to uncover hidden relationships between different cancer sites"_ (Adin et al., 2023). 
 
-We illustrate the methodology with a joint analysis of lung, colorectal, stomach and oral cavity cancer male mortality data in continental Spain during the period 2006-2020. This repository also contains the necessary functions to reproduce all the figures and tables of the chapter.
+We illustrate the methodology with a joint analysis of lung, colorectal, stomach and oral cavity cancer male mortality data in continental Spain during the period 2006-2020. 
+
+This repository also contains the necessary functions to reproduce all the figures and tables of the chapter.
 
 
 ## Table of contents
@@ -22,11 +24,12 @@ The [**CancerData_SpainPROV.Rdata**](https://github.com/spatialstatisticsupna/Bo
     - **_geometry_**: sfc_GEOMETRY
   - **data**: list of `data.frames` objects corresponding to four different cancer types. Each data.frame contains the following variables:
     - **_ID_**: character vector of geographic identifiers  
-    - **_Year_**: numeric vector of year’s identifiers
+    - **_Year_**: numeric vector of yearâ€™s identifiers
     - **_O_**: observed number of cancer deaths
     - **_E_**: expected number of cancer deaths
     - **_SMR_**: standardized mortality ratio
-  
+
+
 Use the following commands to load the data
 ```r 
 > load("R/CancerData_SpainPROV.Rdata")
@@ -38,12 +41,12 @@ Dimension:     XY
 Bounding box:  xmin: 161384 ymin: 4059652 xmax: 781118 ymax: 4838774
 CRS:           +proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs
   ID     NAME                       geometry
-1 01    Álava POLYGON ((539704 4705573, 5...
+1 01    Ãlava POLYGON ((539704 4705573, 5...
 2 02 Albacete POLYGON ((539462 4215448, 5...
 3 03 Alicante MULTIPOLYGON (((688545 4195...
-4 04  Almería POLYGON ((523167 4060037, 5...
+4 04  AlmerÃ­a POLYGON ((523167 4060037, 5...
 5 33 Asturias MULTIPOLYGON (((262649 4764...
-6 05    Ávila POLYGON ((283218 4452970, 2...
+6 05    Ãvila POLYGON ((283218 4452970, 2...
 
 > str(data,2)
 List of 4
