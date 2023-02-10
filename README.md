@@ -77,9 +77,21 @@ List of 4
 ```
 
 # R code
-R code to fit the M-models for multivariate spatio-temporal areal data with INLA (http://www.r-inla.org/) considered in the present chapter, and code to reproduce all the figures and tables. All the R files are written by the authors of the paper.
+R code to fit the M-models for multivariate spatio-temporal areal data with R-INLA (http://www.r-inla.org/) considered in the present chapter, and code to reproduce all the figures and tables. All the R files are written by the authors of the paper.
 
+- [**Fit_models.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/Fit_models.R)
 
+  Main function to fit with R-INLA the different multivariate spatio-temporal models described in the chapter (see Section 2 for further details about _Model 1_ and _Model 2_)
+  
+- [**MCAR_INLA_ST_Model1.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model1.R) and [**MCAR_INLA_ST_Model2.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model2.R)
+
+  R functions to fit our M-model proposals using different prior distributions for the main spatial and temporal random effects and the four types of space-time interactions originally proposed by Knorr-Held (2000).
+  
+  It defines the `MCAR_INLA_ST()` function with the following arguments:
+  
+  * ```carto```: insert text
+  * ```data```: insert text
+  
 
 # Acknowledgements
 The authors would like to thank the Spanish Statistical Office (INE) and the Spanish National Epidemiology Center (area of Environmental Epidemiology and Cancer) for providing the data. This work has been supported by the project PID2020-113125RBI00/MCIN/AEI/10.13039/501100011033.
