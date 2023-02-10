@@ -1,2 +1,88 @@
-# BookChapter_STMmodels
-R code to fit the models and reproduce the results described in Adin et al. (2023)
+# Multivariate models to uncover hidden relationships between different cancer sites
+This repository contains the R code to fit with INLA the M-models for multivariate spatio-temporal areal data described in the book chapter entitled _"Multivariate disease mapping models to uncover hidden relationships between different cancer sites"_ (Adin et al., 2023). 
+
+We illustrate the methodology with a joint analysis of lung, colorectal, stomach and oral cavity cancer male mortality data in continental Spain during the period 2006-2020. This repository also contains the necessary functions to reproduce all the figures and tables of the chapter.
+
+
+## Table of contents
+
+- [Data](#Data)
+- [R code](#R-code)
+- [References](#References)
+
+
+# Data
+Lung cancer (ICD-10 codes C33 and C34), colorectal cancer (ICD-10 codes C17-C21), stomach cancer (ICD-10 codes C16) and LOCP cancer (ICD-10 codes C00-C14) deaths for male population in the 47 provinces of continental Spain during the period 2006-2020. The data are publicly available online without any form of restriction or copyright.
+
+The [**CancerData_SpainPROV.Rdata**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/CancerData_SpainPROV.Rdata) file contains the following objects:
+  - **W**: spatial adjacency binary matrix of the provinces of continental Spain
+  - **carto**: `sf` object containing the polygons of the provinces of continental Spain and 3 variables
+    - **_ID_**: character vector of geographic identifiers
+    - **_NAME_**: character vector of province names
+    - **_geometry_**: sfc_GEOMETRY
+  - **data**: list of `data.frames` objects corresponding to four different cancer types. Each data.frame contains the following variables:
+    - **_ID_**: character vector of geographic identifiers  
+    - **_Year_**: numeric vector of year’s identifiers
+    - **_O_**: observed number of cancer deaths
+    - **_E_**: expected number of cancer deaths
+    - **_SMR_**: standardized mortality ratio
+  
+Use the following commands to load the data
+```r 
+> load("R/CancerData_SpainPROV.Rdata")
+
+> head(carto)
+Simple feature collection with 6 features and 2 fields
+Geometry type: GEOMETRY
+Dimension:     XY
+Bounding box:  xmin: 161384 ymin: 4059652 xmax: 781118 ymax: 4838774
+CRS:           +proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs
+  ID     NAME                       geometry
+1 01    Álava POLYGON ((539704 4705573, 5...
+2 02 Albacete POLYGON ((539462 4215448, 5...
+3 03 Alicante MULTIPOLYGON (((688545 4195...
+4 04  Almería POLYGON ((523167 4060037, 5...
+5 33 Asturias MULTIPOLYGON (((262649 4764...
+6 05    Ávila POLYGON ((283218 4452970, 2...
+
+> str(data,2)
+List of 4
+ $ Lung      :'data.frame':	705 obs. of  5 variables:
+  ..$ ID  : chr [1:705] "01" "01" "01" "01" ...
+  ..$ Year: int [1:705] 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 ...
+  ..$ O   : num [1:705] 92 107 120 119 91 130 105 128 121 115 ...
+  ..$ E   : num [1:705] 108 111 114 117 120 ...
+  ..$ SMR : num [1:705] 0.851 0.963 1.053 1.017 0.758 ...
+ $ Colorectal:'data.frame':	705 obs. of  5 variables:
+  ..$ ID  : chr [1:705] "01" "01" "01" "01" ...
+  ..$ Year: int [1:705] 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 ...
+  ..$ O   : num [1:705] 63 59 65 65 72 68 70 69 57 47 ...
+  ..$ E   : num [1:705] 53.2 55.1 56.9 58.8 60.7 ...
+  ..$ SMR : num [1:705] 1.18 1.07 1.14 1.1 1.19 ...
+ $ Stomach   :'data.frame':	705 obs. of  5 variables:
+  ..$ ID  : chr [1:705] "01" "01" "01" "01" ...
+  ..$ Year: int [1:705] 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 ...
+  ..$ O   : num [1:705] 27 26 33 32 24 44 33 37 40 36 ...
+  ..$ E   : num [1:705] 20.5 21.2 21.9 22.5 23.2 ...
+  ..$ SMR : num [1:705] 1.31 1.23 1.51 1.42 1.03 ...
+ $ LOCP      :'data.frame':	705 obs. of  5 variables:
+  ..$ ID  : chr [1:705] "01" "01" "01" "01" ...
+  ..$ Year: int [1:705] 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 ...
+  ..$ O   : num [1:705] 15 14 12 9 17 17 9 13 10 10 ...
+  ..$ E   : num [1:705] 10.8 11.1 11.4 11.6 11.9 ...
+  ..$ SMR : num [1:705] 1.384 1.262 1.056 0.774 1.428 ...
+```
+
+# R code
+R code to fit the M-models for multivariate spatio-temporal areal data with INLA (http://www.r-inla.org/) considered in the present chapter, and code to reproduce all the figures and tables. All the R files are written by the authors of the paper.
+
+
+
+# Acknowledgements
+The authors would like to thank the Spanish Statistical Office (INE) and the Spanish National Epidemiology Center (area of Environmental Epidemiology and Cancer) for providing the data. This work has been supported by the project PID2020-113125RBI00/MCIN/AEI/10.13039/501100011033.
+
+![plot](https://github.com/spatialstatisticsupna/bigDM/blob/master/micin-aei.jpg)
+
+
+# References
+Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._
