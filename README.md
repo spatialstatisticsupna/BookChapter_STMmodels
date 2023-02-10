@@ -81,16 +81,31 @@ R code to fit the M-models for multivariate spatio-temporal areal data with R-IN
 
 - [**Fit_models.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/Fit_models.R)
 
-  Main function to fit with R-INLA the different multivariate spatio-temporal models described in the chapter (see Section 2 for further details about _Model 1_ and _Model 2_)
+  Main function to fit with R-INLA the different multivariate spatio-temporal models described in the chapter (see Section 2 for further details about _Model 1_ and _Model 2_).
   
 - [**MCAR_INLA_ST_Model1.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model1.R) and [**MCAR_INLA_ST_Model2.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model2.R)
 
-  R functions to fit our M-model proposals using different prior distributions for the main spatial and temporal random effects and the four types of space-time interactions originally proposed by Knorr-Held (2000).
+  R functions to fit our M-model proposals using different prior distributions for the main spatial and temporal random effects and four different types of space-time interactions. It defines the `MCAR_INLA_ST()` function with the following arguments:
   
-  It defines the `MCAR_INLA_ST()` function with the following arguments:
+  * `carto`: object of class `sf` that must contain at least the variable with the identifiers of the spatial areal units specified in the `ID.area` argument.
+  * `data`: object of class `data.frame` that must contain the target variables of interest specified in the arguments `ID.area`, `ID.year`, `O` and `E`.
+  * `ID.area`: character; name of the variable that contains the IDs of spatial areal units. The values of this variable must match those given in the `carto` and `data` variable.
+  * `ID.year`: character; name of the variable that contains the IDs of time points.
+  * `ID.disease`: character; name of the variable that contains the IDs of the diseases.
+  * `O`: character; name of the variable that contains the observed number of cases for each areal unit, time point and disease
+  * `E`: character; name of the variable that contains the expected number of cases for each areal unit, time point and disease
+  * `W`: optional argument with the binary adjacency matrix of the spatial areal units. If NULL (default), this object is computed from the carto argument (two areas are considered as neighbours if they share a common border).
+  * `spatial`: one of either "Leroux" (default), "intrinsic" or "proper", which specifies the prior distribution considered for the spatial random effect.
+  * `temporal`: one of either "rw1" (default) or "rw2", which specifies the prior distribution considered for the temporal random effect.
+  * `interaction`: one of either "none", "TypeI", "TypeII", "TypeIII" or "TypeIV" (default), which specifies the prior distribution for the space-time interaction random effect.
+  * `strategy`: one of either "gaussian", "simplified.laplace" (default), "laplace" or "adaptive", which specifies the approximation strategy considered in the inla
+function. Only valid when using the inla.mode="classic" approximation technique.
   
-  * ```carto```: insert text
-  * ```data```: insert text
+- [**Figures_and_Tables.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/Figures_and_Tables.R)
+
+  R code that contains the necessary functions to replicate the figures and tables of the present chapter.
+  
+Additional auxiliary functions to define the M-model for the spatial/temporal random effects using the `rgeneric`construction of R-INLA are also given in the [**R/functions/**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/functions/) folder. See [Vicente et al. (2022)](https://arxiv.org/abs/2210.14849) for further details about the internal parameterization of the corresponding between-disease covariance matrices.
   
 
 # Acknowledgements
@@ -101,3 +116,5 @@ The authors would like to thank the Spanish Statistical Office (INE) and the Spa
 
 # References
 Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._
+
+[Vicente, G., Adin, A., Goicoa, T., and Ugarte, M.D. (2022). High-dimensional order-free multivariate spatial disease mapping. _arXiv preprint_.](https://arxiv.org/abs/2210.14849)
