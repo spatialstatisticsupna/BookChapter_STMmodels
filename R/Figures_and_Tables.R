@@ -124,6 +124,8 @@ round(Table,1)
 ## Figure 2: Maps of posterior median estimates of $\exp{\theta_{ij}}$ (top) and                 ##
 ##           posterior exceedence probabilities for $Pr(\exp{\theta_{ij}}>1 | {\bf O})$ (bottom) ##
 ###################################################################################################
+Model <- LCAR.t2
+
 S <- nrow(carto)
 J <- length(data)
 
@@ -147,7 +149,7 @@ Map1 <- tm_shape(carto.aux) +
   tm_facets(nrow=2, ncol=2)
 
 tmap_mode("plot")
-tmap_save(Map1, file="Figure2.pdf")
+tmap_save(Map1, file="Figure2.eps")
 
 
 ## Posterior exceedence probabilities ##
@@ -174,12 +176,137 @@ tmap_mode("plot")
 tmap_save(Map2, file="Figure2b.eps")
 
 
-
 #############################################################################################
 ## Table 6: Estimated between-disease spatial correlations (posterior medians and 95% CI). ##
 ##          Significant correlations are highlighted in bold.                              ##
 #############################################################################################
-Model <- LCAR.t2
 round(Model$summary.cor[,c("0.5quant","0.025quant","0.975quant")],3)
 
 
+###########################################################################
+## Figure 3: Posterior median estimates of year-specific mortality risks ##
+##           $\exp(\gamma_{tj})$ and 95\% credible intervals             ##
+###########################################################################
+marginals <- list(Model$marginals.random$idy.1,Model$marginals.random$idy.2,
+                  Model$marginals.random$idy.3,Model$marginals.random$idy.4)
+
+x <- 1:T
+title <- paste(c("Lung","Colorectal","Stomach","LOCP"),"cancer")
+
+graphics.off()
+postscript("Figure3.eps", width=10, height=7, horizontal=FALSE)
+par(mfrow=c(2,2), pty="m")
+k <- 1
+
+for(i in marginals){
+  aux <- lapply(i, function(x) inla.tmarginal(function(y) exp(y),x))
+  temporal.mean <- unlist(lapply(aux, function(x) inla.emarginal(function(y) y,x)))
+  q1 <- unlist(lapply(aux, function(x) inla.qmarginal(0.025,x)))
+  q2 <- unlist(lapply(aux, function(x) inla.qmarginal(0.975,x)))
+  
+  plot(range(x), c(0.75, 1.35), type="n", 
+       xlab="",ylab="", xaxt="n", main=title[k], cex.lab=1.3, cex.axis=1.3, cex.main=1.5)
+  axis(1, at=round(seq(1,T,2)), labels=round(seq(T.from,T.to,2)), las=0, cex.axis=1.3)
+  X.Vec <- c(x, tail(x, 1), rev(x), x[1])
+  Y.Vec <- c(q1, tail(q2, 1), rev(q2), q1[1])
+  polygon(X.Vec, Y.Vec, col = "grey", border = NA)
+  lines(temporal.mean)
+  abline(h=1, lty=2)
+  
+  k <- k+1
+}  
+dev.off()
+
+
+###########################################################################################
+## Figure 4: Maps of posterior median estimates of LUNG cancer mortality risks $R_{itj}$ ##
+###########################################################################################
+risk <- matrix(Model$summary.fitted.values$`0.5quant`[Model$.args$data$ID.disease==1],S,T,byrow=F)
+colnames(risk) <- paste("Year",seq(T.from,T.to),sep=".")
+
+carto.aux <- cbind(carto,risk)
+paleta <- brewer.pal(8,"YlOrRd")
+values <- c(-Inf,0.77,0.83,0.91,1,1.1,1.20,1.30,Inf)
+
+Map <- tm_shape(carto.aux) +
+  tm_polygons(col=paste("Year",c(2006,2009,2012,2014,2017,2020),sep="."), id="name", palette=paleta,
+              title="", legend.show=T, legend.reverse=T,
+              style="fixed", breaks=values, interval.closure="left") +
+  tm_layout(main.title="Lung cancer mortality data", main.title.position=0.25, panel.label.size=1.5,
+            panel.labels=paste("Year",c(2006,2009,2012,2014,2017,2020)),
+            legend.outside=T, legend.outside.position="right", legend.frame=F,
+            legend.outside.size=0.2, outer.margins=c(0.02,0.01,0.02,0.01)) + 
+  tm_facets(nrow=2, ncol=3)
+
+tmap_mode("plot")
+tmap_save(Map, file="Figure4.eps")
+
+
+#################################################################################################
+## Figure 5: Maps of posterior median estimates of COLORECTAL cancer mortality risks $R_{itj}$ ##
+#################################################################################################
+risk <- matrix(Model$summary.fitted.values$`0.5quant`[Model$.args$data$ID.disease==2],S,T,byrow=F)
+colnames(risk) <- paste("Year",seq(T.from,T.to),sep=".")
+
+carto.aux <- cbind(carto,risk)
+paleta <- brewer.pal(8,"YlOrRd")
+values <- c(-Inf,0.77,0.83,0.91,1,1.1,1.20,1.30,Inf)
+
+Map <- tm_shape(carto.aux) +
+  tm_polygons(col=paste("Year",c(2006,2009,2012,2014,2017,2020),sep="."), id="name", palette=paleta,
+              title="", legend.show=T, legend.reverse=T,
+              style="fixed", breaks=values, interval.closure="left") +
+  tm_layout(main.title="Colorectal cancer mortality data", main.title.position=0.2, panel.label.size=1.5,
+            panel.labels=paste("Year",c(2006,2009,2012,2014,2017,2020)),
+            legend.outside=T, legend.outside.position="right", legend.frame=F,
+            legend.outside.size=0.2, outer.margins=c(0.02,0.01,0.02,0.01)) + 
+  tm_facets(nrow=2, ncol=3)
+
+tmap_mode("plot")
+tmap_save(Map, file="Figure5.eps")
+
+##############################################################################################
+## Figure 6: Maps of posterior median estimates of STOMACH cancer mortality risks $R_{itj}$ ##
+##############################################################################################
+risk <- matrix(Model$summary.fitted.values$`0.5quant`[Model$.args$data$ID.disease==3],S,T,byrow=F)
+colnames(risk) <- paste("Year",seq(T.from,T.to),sep=".")
+
+carto.aux <- cbind(carto,risk)
+paleta <- brewer.pal(8,"YlOrRd")
+values <- c(-Inf,0.77,0.83,0.91,1,1.1,1.20,1.30,Inf)
+
+Map <- tm_shape(carto.aux) +
+  tm_polygons(col=paste("Year",c(2006,2009,2012,2014,2017,2020),sep="."), id="name", palette=paleta,
+              title="", legend.show=T, legend.reverse=T,
+              style="fixed", breaks=values, interval.closure="left") +
+  tm_layout(main.title="Stomach cancer mortality data", main.title.position=0.2, panel.label.size=1.5,
+            panel.labels=paste("Year",c(2006,2009,2012,2014,2017,2020)),
+            legend.outside=T, legend.outside.position="right", legend.frame=F,
+            legend.outside.size=0.2, outer.margins=c(0.02,0.01,0.02,0.01)) + 
+  tm_facets(nrow=2, ncol=3)
+
+tmap_mode("plot")
+tmap_save(Map, file="Figure6.eps")
+
+###########################################################################################
+## Figure 7: Maps of posterior median estimates of LOCP cancer mortality risks $R_{itj}$ ##
+###########################################################################################
+risk <- matrix(Model$summary.fitted.values$`0.5quant`[Model$.args$data$ID.disease==4],S,T,byrow=F)
+colnames(risk) <- paste("Year",seq(T.from,T.to),sep=".")
+
+carto.aux <- cbind(carto,risk)
+paleta <- brewer.pal(8,"YlOrRd")
+values <- c(-Inf,0.77,0.83,0.91,1,1.1,1.20,1.30,Inf)
+
+Map <- tm_shape(carto.aux) +
+  tm_polygons(col=paste("Year",c(2006,2009,2012,2014,2017,2020),sep="."), id="name", palette=paleta,
+              title="", legend.show=T, legend.reverse=T,
+              style="fixed", breaks=values, interval.closure="left") +
+  tm_layout(main.title="LOCP cancer mortality data", main.title.position=0.25, panel.label.size=1.5,
+            panel.labels=paste("Year",c(2006,2009,2012,2014,2017,2020)),
+            legend.outside=T, legend.outside.position="right", legend.frame=F,
+            legend.outside.size=0.2, outer.margins=c(0.02,0.01,0.02,0.01)) + 
+  tm_facets(nrow=2, ncol=3)
+
+tmap_mode("plot")
+tmap_save(Map, file="Figure7.eps")
