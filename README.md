@@ -85,7 +85,9 @@ R code to fit the M-models for multivariate spatio-temporal areal data with R-IN
   
 - [**MCAR_INLA_ST_Model1.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model1.R) and [**MCAR_INLA_ST_Model2.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/MCAR_INLA_ST_Model2.R)
 
-  R functions to fit our M-model proposals using different prior distributions for the main spatial and temporal random effects and four different types of space-time interactions. It defines the `MCAR_INLA_ST()` function with the following arguments:
+  R functions to fit our M-model proposals using different prior distributions for the main spatial and temporal random effects and four different types of space-time interactions. A similar implementation was originally proposed by [Vicente et al. (2020)](https://doi.org/10.1007/s00477-020-01808-x).
+  
+  It defines the `MCAR_INLA_ST()` function with the following arguments:
   
   * `carto`: object of class `sf` that must contain at least the variable with the identifiers of the spatial areal units specified in the `ID.area` argument.
   * `data`: object of class `data.frame` that must contain the target variables of interest specified in the arguments `ID.area`, `ID.year`, `O` and `E`.
@@ -116,5 +118,7 @@ The authors would like to thank the Spanish Statistical Office (INE) and the Spa
 
 # References
 Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._
+
+[Vicente, G., Goicoa, T., and Ugarte, M.D. (2020). Bayesian inference in multivariate spatio-temporal areal models using INLA: analysis of gender-based violence in small areas. _Stochastic Environmental Research and Risk Assessment_, vol. 34, 1421-1440, 2020.](https://doi.org/10.1007/s00477-020-01808-x).
 
 [Vicente, G., Adin, A., Goicoa, T., and Ugarte, M.D. (2022). High-dimensional order-free multivariate spatial disease mapping. _arXiv preprint_.](https://arxiv.org/abs/2210.14849)
