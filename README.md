@@ -106,13 +106,13 @@ function. Only valid when using the inla.mode="classic" approximation technique.
   
 - [**Figures_and_Tables.R**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/Figures_and_Tables.R)
 
-  R code that contains the necessary functions to replicate the figures and tables of the present chapter.
+  R code that contains the functions to replicate the figures and tables of the present chapter.
   
 Additional auxiliary functions to define the M-model for the spatial/temporal random effects using the `rgeneric`construction of R-INLA are also given in the [**R/functions/**](https://github.com/spatialstatisticsupna/BookChapter_STMmodels/blob/master/R/functions/) folder. See [Vicente et al. (2022)](https://arxiv.org/abs/2210.14849) for further details about the internal parameterization of the corresponding between-disease covariance matrices.
   
 
 # Acknowledgements
-The authors would like to thank the Spanish Statistical Office (INE) and the Spanish National Epidemiology Center (area of Environmental Epidemiology and Cancer) for providing the data. This work has been supported by the project PID2020-113125RBI00/MCIN/AEI/10.13039/501100011033.
+The authors would like to thank the Spanish Statistical Office (INE) and the Spanish National Epidemiology Center (area of Environmental Epidemiology and Cancer) for providing the data. This work has been supported by project PID2020-113125RBI00/MCIN/AEI/10.13039/501100011033.
 
 ![plot](https://github.com/spatialstatisticsupna/bigDM/blob/master/micin-aei.jpg)
 
