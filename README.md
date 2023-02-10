@@ -1,9 +1,10 @@
 # Multivariate models to uncover hidden relationships between different cancer sites
 This repository contains the R code to fit with INLA the M-models for multivariate spatio-temporal areal data described in the book chapter entitled _"Multivariate disease mapping models to uncover hidden relationships between different cancer sites"_ (Adin et al., 2023). 
 
-We illustrate the methodology with a joint analysis of lung, colorectal, stomach and oral cavity cancer male mortality data in continental Spain during the period 2006-2020. 
+We illustrate the methodology with a joint analysis of male mortality data for lung, colorectal, stomach and LOCP ((lip,
+oral cavity and pharynx) cancer in continental Spain for the period 2006-2020. 
 
-This repository also contains the necessary functions to reproduce all the figures and tables of the chapter.
+This repository also contains the functions to reproduce all the figures and tables of the chapter.
 
 
 ## Table of contents
