@@ -28,7 +28,7 @@ MCAR_INLA_ST <- function(carto=NULL, data=NULL, ID.area=NULL, ID.year=NULL, ID.d
     stop("the 'O' argument is missing")
   if(is.null(E))
     stop("the 'E' argument is missing")
-  if(!(spatial %in% c("Leroux","intrinsic","proper","BYM")))
+  if(!(spatial %in% c("Leroux","intrinsic","proper")))
     stop("invalid 'spatial' argument")
   if(!(temporal %in% c("rw1","rw2")))
     stop("invalid 'temporal' argument")

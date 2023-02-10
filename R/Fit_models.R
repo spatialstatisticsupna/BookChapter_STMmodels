@@ -22,8 +22,7 @@ str(data,2)
 J <- length(data)
 S <- length(unique(data[[1]]$ID))
 T <- length(unique(data[[1]]$Year))
-t.from <- min(data[[1]]$Year)
-t.to <- max(data[[1]]$Year)
+
 
 ## Combine data sets by row ##
 data <- do.call(rbind,data)
