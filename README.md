@@ -118,8 +118,8 @@ The authors would like to thank the Spanish Statistical Office (INE) and the Spa
 
 
 # References
-[Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._ Springer.](https://doi.org/10.1007/978-3-031-32729-2_1)
+[Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate Disease Mapping Models to Uncover Hidden Relationships Between Different Cancer Sites. In: Larriba, Y. (eds) _Statistical Methods at the Forefront of Biomedical Advances._ Springer, Cham.](https://doi.org/10.1007/978-3-031-32729-2_1)
 
-[Vicente, G., Goicoa, T., and Ugarte, M.D. (2020). Bayesian inference in multivariate spatio-temporal areal models using INLA: analysis of gender-based violence in small areas. _Stochastic Environmental Research and Risk Assessment_, vol. 34, 1421-1440, 2020.](https://doi.org/10.1007/s00477-020-01808-x).
+[Vicente, G., Goicoa, T., and Ugarte, M.D. (2020). Bayesian inference in multivariate spatio-temporal areal models using INLA: analysis of gender-based violence in small areas. _Stochastic Environmental Research and Risk Assessment_, vol. 34, 1421-1440, 2020.](https://doi.org/10.1007/s00477-020-01808-x)
 
 [Vicente, G., Adin, A., Goicoa, T., and Ugarte, M.D. (2022). High-dimensional order-free multivariate spatial disease mapping. _arXiv preprint_.](https://arxiv.org/abs/2210.14849)
