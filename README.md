@@ -1,5 +1,5 @@
 # Multivariate models to uncover hidden relationships between different cancer sites
-This repository contains the R code to fit with INLA the M-models for multivariate spatio-temporal areal data described in the book chapter entitled _"Multivariate disease mapping models to uncover hidden relationships between different cancer sites"_ (Adin et al., 2023). 
+This repository contains the R code to fit with INLA the M-models for multivariate spatio-temporal areal data described in the book chapter entitled _"Multivariate disease mapping models to uncover hidden relationships between different cancer sites"_ [(Adin et al., 2023)](https://doi.org/10.1007/978-3-031-32729-2_1). 
 
 We illustrate the methodology with a joint analysis of male mortality data for lung, colorectal, stomach and LOCP (lip,
 oral cavity and pharynx) cancer in continental Spain for the period 2006-2020. 
@@ -118,7 +118,7 @@ The authors would like to thank the Spanish Statistical Office (INE) and the Spa
 
 
 # References
-Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._ Springer.
+[Adin, A., Goicoa, T., and Ugarte, M.D. (2023). Multivariate disease mapping models to uncover hidden relationships between different cancer sites. _Statistical Methods at the Forefront of Biomedical Advances._ Springer.](https://doi.org/10.1007/978-3-031-32729-2_1)
 
 [Vicente, G., Goicoa, T., and Ugarte, M.D. (2020). Bayesian inference in multivariate spatio-temporal areal models using INLA: analysis of gender-based violence in small areas. _Stochastic Environmental Research and Risk Assessment_, vol. 34, 1421-1440, 2020.](https://doi.org/10.1007/s00477-020-01808-x).
 
