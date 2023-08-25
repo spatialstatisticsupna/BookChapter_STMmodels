@@ -122,4 +122,4 @@ The authors would like to thank the Spanish Statistical Office (INE) and the Spa
 
 [Vicente, G., Goicoa, T., and Ugarte, M.D. (2020). Bayesian inference in multivariate spatio-temporal areal models using INLA: analysis of gender-based violence in small areas. _Stochastic Environmental Research and Risk Assessment_, vol. 34, 1421-1440, 2020.](https://doi.org/10.1007/s00477-020-01808-x)
 
-[Vicente, G., Adin, A., Goicoa, T., and Ugarte, M.D. (2022). High-dimensional order-free multivariate spatial disease mapping. _arXiv preprint_.](https://arxiv.org/abs/2210.14849)
+[Vicente, G., Adin, A., Goicoa, T., and Ugarte, M.D. (2023). High-dimensional order-free multivariate spatial disease mapping. _Statistics and Computing_, __33__, 104.](https://doi.org/10.1007/s11222-023-10263-x)
