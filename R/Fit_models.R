@@ -10,6 +10,8 @@ library(sf)
 library(spatialreg)
 library(spdep)
 
+setwd(dirname(rstudioapi::getSourceEditorContext()$path))
+
 
 ########################################
 ## 1) Load data and cartography files ##

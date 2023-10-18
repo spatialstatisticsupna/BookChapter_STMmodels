@@ -12,7 +12,7 @@ options(dplyr.summarise.inform=FALSE)
 MCAR_INLA_ST <- function(carto=NULL, data=NULL, ID.area=NULL, ID.year=NULL, ID.disease=NULL,
                          O=NULL, E=NULL, W=NULL, spatial="intrinsic", temporal="rw1",
                          interaction="TypeIV", strategy="simplified.laplace"){
-  
+
   ## Check for errors ##
   if(is.null(carto))
     stop("the 'carto' argument is missing")
@@ -68,7 +68,7 @@ MCAR_INLA_ST <- function(carto=NULL, data=NULL, ID.area=NULL, ID.year=NULL, ID.d
   ## Define spatial adjacency/structure matrix ##
   if(is.null(W)){
     carto.nb <- poly2nb(carto)
-    Ws <- as(nb2listw(carto.nb, style="B"),"CsparseMatrix")
+    Ws <- as(nb2mat(carto.nb, style="B"),"Matrix")
   }else{
     carto.nb <- mat2listw(W, style="B")$neighbours
     Ws <- W
@@ -77,8 +77,8 @@ MCAR_INLA_ST <- function(carto=NULL, data=NULL, ID.area=NULL, ID.year=NULL, ID.d
   if(carto.nc!=1) stop(sprintf("'carto' object has %d disjoint connected subgraphs",carto.nc))
   
   S <- length(carto.nb)
-  Rs <- inla.as.sparse(Diagonal(S,colSums(Ws))-Ws)
-  Rs.Leroux <- inla.as.sparse(Diagonal(S)-Rs)
+  Rs <- as(Diagonal(S,colSums(Ws))-Ws,"Matrix")
+  Rs.Leroux <- as(Diagonal(S)-Rs,"Matrix")
   
   
   ## Define temporal adjacency/structure matrix ##
@@ -86,7 +86,7 @@ MCAR_INLA_ST <- function(carto=NULL, data=NULL, ID.area=NULL, ID.year=NULL, ID.d
   if(temporal=="rw1") dif <- 1
   if(temporal=="rw2") dif <- 2
   D <- diff(diag(T), differences=dif)
-  Rt <- inla.as.sparse(t(D)%*%D)
+  Rt <- as(t(D)%*%D,"Matrix")
   
   Wt <- -Rt
   diag(Wt) <- 0
